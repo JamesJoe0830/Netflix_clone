@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "../api/axios";
 import requests from "../api/requests";
 import "./Banner.css";
+
 export default function Banner() {
   const [movie, setMovie] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
@@ -33,7 +34,7 @@ export default function Banner() {
   }; // str? 이거에 의미 (str.length하면 안돼?) => str이 정의되어 있을때만 length를 구하는 것임
   //str 이 없는데 length   길이를 구하려고 하다가 undefined 에러가 나게 된다.
 
-  console.log("movie",movie)
+  console.log("movie", movie);
   if (!isClicked) {
     return (
       <header
@@ -71,12 +72,13 @@ export default function Banner() {
         <Cotainer>
           <HomeContainer>
             <Iframe
-              src={`https://www.youtube.com/embed/${movie.videos?.results[0].key}
-                ?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos?.results[0].key}`}
               width="640"
               height="360"
+              src={`https://www.youtube.com/embed/${movie.videos.results[0].key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos.results[0].key}`}
+              title="YouTube video player"
               frameborder="0"
               allow="autoplay; fullscreen"
+              allowfullscreen
             ></Iframe>
           </HomeContainer>
         </Cotainer>
