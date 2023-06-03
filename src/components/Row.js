@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
+import MovieModal from "./MovieModal";
 import "./Row.css";
 export default function Row({ isLargeRow, title, id, fetchUrl }) {
   const [movies, setMovies] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [movieSelected,setMovieSelected] = useState({});
   useEffect(() => {
     fetchMovieData();
   }, [fetchUrl]);
@@ -11,6 +14,12 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
     const request = await axios.get(fetchUrl);
     setMovies(request.data.results);
   };
+
+  const handleClick = (movie) => {
+    setModalOpen(true); // modal true로 만들기 위한 것
+    setMovieSelected(movie); //movie 정보 가져오는 것
+  };
+  // console.log("movie",movies)
   return (
     <section className="row">
       <h2>{title}</h2>
@@ -37,6 +46,8 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
               }`}
               // poster path는 넷플릭스 original제공하는 부분이고 // isLarge가 false일 경우에 path.backdrop.path이다.
               alt={movie.name}
+              //onClick하면 상세 설명 나오게 만들기 *modal
+              onClick={()=>{handleClick(movie)}}
             />
           ))}
         </div>
@@ -52,6 +63,11 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
           </span>
         </div>
       </div>
+      {modalOpen && (
+        <MovieModal {...movieSelected} setModalOpen={setModalOpen} />
+      )
+
+      }
     </section>
   );
 }
