@@ -57,6 +57,7 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
             onClick={() => {
               document.getElementById(id).scrollLeft += window.innerWidth - 80;
               //🔥🔥 document.getElementById(id).scrollLeft를 활용해서 슬라이드 기능 구현
+              // scrollRight는 없어서 scrollLeft '-' '+'부분을 통해서 구분 
             }}
           >
             {">"}
