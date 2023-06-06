@@ -26,8 +26,12 @@ export default function Nav() {
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     navigate(`/seach?q=${e.target.value}`);
-
   };
+  // 🔍 검색할때 💡[navigate]를 이용해서 검색한 target과 같은 것 찾아주는 기능 구현 
+  const useQuery = () =>{
+    return new URLSearchParams(useLocation().search);
+  };
+  //Search 페이지에서 seachTerm 가져오기 
   return (
     <nav className={`nav ${show && "nav_black"}`}>
       <img

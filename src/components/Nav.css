@@ -36,6 +36,7 @@
     position: fixed;
     left: 50%;
     transform: translate(-50%,0);
+    /* 위에 두개를 이용해서 가운데로 보냄 */
     background-color: #000000c7;
     border-radius: 5px;
     color: white;
