@@ -34,8 +34,10 @@
 
 .nav__input{
     position: fixed;
-    left: 50%;
+    left: 50%; 
+    /* left를 50퍼를 주면 정 중앙이 배치하는 것의 왼쪽 꼭지점이 오게 된다. */
     transform: translate(-50%,0);
+    /* 이를 통해서 도형의 50퍼만큼 위쪽과 왼쪽으로 당겨 가운데로 맞출 수 있다 */
     /* 위에 두개를 이용해서 가운데로 보냄 */
     background-color: #000000c7;
     border-radius: 5px;
