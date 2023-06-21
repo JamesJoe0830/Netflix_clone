@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "../../api/axios";
 import './SearchPage.css';
-
+import { useDebounce } from "../../hooks/useDebounce";
 export default function SearchPage() {
   const [searchResults, setSearchResults] = useState([]);
 
@@ -11,14 +11,15 @@ export default function SearchPage() {
   };
   let query = useQuery();
   const searchTerm = query.get("q");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   console.log(searchTerm);
   //Search 페이지에서 seachTerm 가져오기
 
   useEffect(() => {
-    if (searchTerm) {
-      fetchSearchMovie(searchTerm);
+    if (debouncedSearchTerm) {
+      fetchSearchMovie(debouncedSearchTerm);
     }
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
   // searchTerm이 변할때 마다 fetchSearchMovie를 다시한번 요청 보낼 수 있도록
   const fetchSearchMovie = async (searchTerm) => {
     try {
@@ -39,7 +40,7 @@ export default function SearchPage() {
             const movieImageUrl =
               "https://image.tmdb.org/t/p/w500" + movie.backdrop_path;
             return (
-              <div className="movie">
+              <div className="movie" key={movie.id}>
                 <div className="movie__coulmn-poster">
                   <img
                     src={movieImageUrl}
@@ -55,7 +56,7 @@ export default function SearchPage() {
     ) : (
       <section className="no-results">
         <div className="no-results__text">
-          <p>찾고자하는 검색어" {searchTerm}"에 맞는 영화가 없습니다.</p>
+          <p>찾고자하는 검색어" {debouncedSearchTerm}"에 맞는 영화가 없습니다.</p>
         </div>
       </section>
     );
