@@ -21,6 +21,7 @@ const useOnClickOutside = (ref, handler) => {
       document.removeEventListener("touchstart", listener);
     };
     // unmount될때는 useEffect에서 return에서 다룬다.
+    // unmount될떄 removeEventListner로 listener 없애줌 
   }, []);
 };
 
