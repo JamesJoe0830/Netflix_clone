@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import "./MovieModal.css";
-function MovieModal ({
+function MovieModal({
   backdrop_path,
   title,
   overview,
@@ -10,10 +11,16 @@ function MovieModal ({
   vote_average,
   setModalOpen,
 }) {
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => {
+      setModalOpen(false);
+  });
+// useOnClickOutside 콜 함 
   return (
     <div className="presentation">
       <div className="wrapper-modal">
-        <div className="modal">
+        <div className="modal" ref={ref}>
           <span onClick={() => setModalOpen(false)} className="modal-close">
             X
           </span>
@@ -35,6 +42,6 @@ function MovieModal ({
       </div>
     </div>
   );
-};
+}
 
 export default MovieModal;
