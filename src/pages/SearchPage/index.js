@@ -34,7 +34,7 @@ export default function SearchPage() {
     }
   };
   const renderSearchResults = () => {
-    return searchResults.length > 0 ? (
+    return searchResults.length > 0 ? ( 
       <section className="search-container">
         {searchResults.map((movie) => {
           if (movie.backdrop_path !== null && movie.media_type !== "person") {

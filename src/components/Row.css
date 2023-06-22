@@ -133,7 +133,7 @@
       max-height: 280px;
     }
   }
-  
+  /* swiper에 이미 스타일 되어 있는거를 important로 적용해서 바꿔주기  */
   .swiper-pagination {
     text-align: right !important;
   }
@@ -147,11 +147,7 @@
     background: white !important;
   }
   
-  .swiper-button-prev {
-    color: white !important;
-  }
-  
-  .swiper-button-next {
+  .swiper-button-prev, .swiper-button-next {
     color: white !important;
   }
   
